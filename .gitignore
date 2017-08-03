@@ -10,3 +10,4 @@ Cargo.lock
 .Rproj
 pangenome_R.Rproj
 data/
+.Rhistory
