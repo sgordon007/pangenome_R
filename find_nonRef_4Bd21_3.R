@@ -31,12 +31,16 @@ colnames(highconf_pangenes)[1] <- "cluster_id"
 # highconf_pangene cluster id in one of the columns
 Bd213_highconf_nonRefpangenes_tbl <- Bd213_genes %>%
   filter(cluster_id %in% highconf_pangenes$cluster_id)
-  select(cluster_id, Bd21.3_r.1.cds.fna.nucl)
+
 
 Bd213_highconf_nonRefpangenes_lst <- Bd213_genes %>%
-    filter(cluster_id %in% highconf_pangenes$cluster_id)
+  filter(cluster_id %in% highconf_pangenes$cluster_id) %>%
   select(cluster_id)
   
   
-write.csv(Bd213_highconf_nonRefpangenes_lst, file = "data_output/surveys_complete.csv",
+write.csv(Bd213_highconf_nonRefpangenes_lst, file = "data_output/Bd213_highconf_nonRefpangenes_list.csv",
             row.names = FALSE)
+
+write.csv(Bd213_highconf_nonRefpangenes_tbl, file = "data_output/Bd213_highconf_nonRefpangenes_table.csv",
+          row.names = FALSE)
+
