@@ -2,7 +2,7 @@ library(tidyverse)
 
 # read in the redundant pangenome matrix
 # pangenome_redundant = read.table("data/pangenome_matrix_t0.tab.rotated.txt", sep = "\t", header = TRUE, row.names = 1)
-pangenome_redundant = read.table("data/pangenome_matrix_t0.tab.rotated.txt", sep = "\t", header = TRUE)
+pangenome_redundant = read.table("data/pangenome_matrix_t0.tab.rotated.shortid.txt", sep = "\t", header = TRUE)
 
 # read in the list of high-confidence pan-genes
 highconf_pangenes = read.table("data/high-confidence.nonRef.pangenes.jgiIds.tsv", sep = "\t", header = FALSE)
@@ -29,13 +29,14 @@ colnames(highconf_pangenes)[1] <- "cluster_id"
 
 ## we want to find rows in the Bd213 frame that have a 
 # highconf_pangene cluster id in one of the columns
-# we cannot 
-Only keep the most common species
-Bd213_highconf_nonRefpangenes <- Bd213_genes %>%
+Bd213_highconf_nonRefpangenes_tbl <- Bd213_genes %>%
   filter(cluster_id %in% highconf_pangenes$cluster_id)
+  select(cluster_id, Bd21.3_r.1.cds.fna.nucl)
 
-
-  select(year, sex, weight)
-
-View(pangenome_redundant)
-surveys[which(levels(surveys$sex)=="M")]
+Bd213_highconf_nonRefpangenes_lst <- Bd213_genes %>%
+    filter(cluster_id %in% highconf_pangenes$cluster_id)
+  select(cluster_id)
+  
+  
+write.csv(Bd213_highconf_nonRefpangenes_lst, file = "data_output/surveys_complete.csv",
+            row.names = FALSE)
