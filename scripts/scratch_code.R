@@ -1,4 +1,10 @@
+write.csv(surveys_complete, file = "data_output/surveys_complete.csv",
+          row.names = FALSE)
 
+pangram <- "The quick brown fox jumps over the lazy dog"
+strsplit(pangram, " ")
+words <- strsplit(pangram, " ")[[1]]
+words[1]
 
 weight_kg <- 55
 x <- 3
